@@ -10,15 +10,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebFilter
+@WebFilter(urlPatterns = "/*")
 public class AuthenticationFilter implements Filter {
 
-    private static final String AUTHENTICATION_ERROR = "{\n" +
-            "        \"error\": \"Not valid authentication key\"\n" +
-            "    }";
-
-    private static final String AUTHENTICATION_KEY = "very_secured_key";
+    private static final List<String> PUBLIC_PAGES = List.of("/registration", "/login");
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,20 +26,19 @@ public class AuthenticationFilter implements Filter {
         var httpRequest = (HttpServletRequest) request;
         var httpResponse = (HttpServletResponse) response;
 
-        String key = httpRequest.getHeader("Authorization");
+        if (PUBLIC_PAGES.contains(httpRequest.getServletPath())) {
+            chain.doFilter(request, response);
+            return;
+        }
 
-        if (AUTHENTICATION_KEY.equalsIgnoreCase(key)) {
+        if ("true".equals(httpRequest.getSession().getAttribute("authorized"))) {
             chain.doFilter(request, response);
         } else {
-            httpResponse.getWriter().print(AUTHENTICATION_ERROR);
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.setContentType("application/json");
+            httpRequest.getRequestDispatcher("/jsp/login.jsp").forward(httpRequest, httpResponse);
         }
     }
 
     @Override
     public void destroy() {
-
     }
-
 }

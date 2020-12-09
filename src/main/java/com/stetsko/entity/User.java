@@ -1,15 +1,12 @@
-package com.stetsko.model;
+package com.stetsko.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class User {
 
     private long id;
-
     private String username;
-
     private String password;
-
     private String email;
 
     public User(long id, String username, String password, String email) {
