@@ -3,23 +3,36 @@ package com.stetsko.repository;
 import com.stetsko.entity.User;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class InMemoryUserRepository {
+public class InMemoryUserRepository implements UserRepository {
 
     public static InMemoryUserRepository inMemoryUserRepository = new InMemoryUserRepository();
 
-    private ArrayList<User> users = new ArrayList<>();
+    public InMemoryUserRepository() {
+    }
+
+    private static final List<User> users = new ArrayList<>();
 
     private AtomicInteger idGenerator = new AtomicInteger(1);
 
-    public User saveUser(User user) {
+
+    @Override
+    public List<User> getAll() {
+        return users;
+    }
+
+    @Override
+    public Optional<User> getById() {
+        return Optional.empty();
+    }
+
+    @Override
+    public User save(User user) {
         user.setId(idGenerator.getAndIncrement());
         users.add(user);
         return user;
-    }
-
-    public ArrayList<User> getAllUsers() {
-        return users;
     }
 }
