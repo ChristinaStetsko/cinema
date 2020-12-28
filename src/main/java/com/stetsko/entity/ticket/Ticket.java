@@ -1,8 +1,10 @@
-package com.stetsko.entity;
+package com.stetsko.entity.ticket;
 
-public class Ticket {
+import com.stetsko.entity.AbstractEntity;
 
-    private long id;
+public class Ticket extends AbstractEntity {
+
+    private Long id;
     private String movieTitle;
     private String details;
     private double price;
@@ -17,7 +19,8 @@ public class Ticket {
     public Ticket() {
     }
 
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 

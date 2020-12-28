@@ -1,6 +1,6 @@
 package com.stetsko.servlet;
 
-import com.stetsko.entity.User;
+import com.stetsko.entity.user.User;
 import com.stetsko.repository.InMemoryUserRepository;
 
 import javax.servlet.ServletException;

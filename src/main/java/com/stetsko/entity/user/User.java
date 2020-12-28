@@ -1,8 +1,9 @@
-package com.stetsko.entity;
+package com.stetsko.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.stetsko.entity.AbstractEntity;
 
-public class User {
+public class User extends AbstractEntity {
 
     private long id;
     private String username;

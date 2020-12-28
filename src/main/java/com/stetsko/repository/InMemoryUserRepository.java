@@ -1,6 +1,6 @@
 package com.stetsko.repository;
 
-import com.stetsko.entity.User;
+import com.stetsko.entity.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
