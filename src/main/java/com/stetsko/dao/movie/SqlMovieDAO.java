@@ -69,7 +69,7 @@ public class SqlMovieDAO extends ConnectionManager implements MovieDAO {
             final String description = resultSet.getString(MovieFields.DESCRIPTION);
             return new Movie(title, description);
         } catch (SQLException e) {
-            // TODO: 28.12.2020 Lohger
+            // TODO: 28.12.2020 Logger
             throw new DAOException("Unable to read product", e);
         }
     }
