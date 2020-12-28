@@ -3,6 +3,14 @@ package com.stetsko.entity.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stetsko.entity.AbstractEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User extends AbstractEntity {
 
     private long id;
@@ -20,7 +28,7 @@ public class User extends AbstractEntity {
     public User() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

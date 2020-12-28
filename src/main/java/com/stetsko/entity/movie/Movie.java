@@ -2,9 +2,24 @@ package com.stetsko.entity.movie;
 
 import com.stetsko.entity.AbstractEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "movie")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Movie extends AbstractEntity {
 
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
 
     public Movie(String title, String description) {

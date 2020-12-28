@@ -2,6 +2,14 @@ package com.stetsko.entity.ticket;
 
 import com.stetsko.entity.AbstractEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ticket")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Ticket extends AbstractEntity {
 
     private Long id;
